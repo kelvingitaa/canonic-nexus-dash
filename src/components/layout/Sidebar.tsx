@@ -31,10 +31,16 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     <li>
       <a
         href="#"
-        className={cn("sidebar-item", active && "active")}
+        className={cn(
+          "sidebar-item flex items-center gap-3 px-3 py-2 rounded-md transition-colors",
+          active 
+            ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium" 
+            : "text-sidebar-foreground/80 hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
+          collapsed && "justify-center"
+        )}
       >
-        {icon}
-        {!collapsed && <span>{text}</span>}
+        <span className="flex-shrink-0">{icon}</span>
+        {!collapsed && <span className="truncate">{text}</span>}
       </a>
     </li>
   );
@@ -57,6 +63,7 @@ const Sidebar: React.FC = () => {
             size="icon"
             onClick={() => setCollapsed(!collapsed)}
             className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? (
               <ChevronRight className="h-5 w-5" />

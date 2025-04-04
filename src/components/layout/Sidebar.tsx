@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   ChevronLeft,
@@ -17,23 +18,26 @@ import { Button } from "@/components/ui/button";
 interface SidebarItemProps {
   icon: React.ReactNode;
   text: string;
-  active?: boolean;
+  path: string;
   collapsed?: boolean;
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
   icon,
   text,
-  active = false,
+  path,
   collapsed = false,
 }) => {
+  const location = useLocation();
+  const isActive = location.pathname === path;
+
   return (
     <li>
-      <a
-        href="#"
+      <Link
+        to={path}
         className={cn(
           "sidebar-item flex items-center gap-3 px-3 py-2 rounded-md transition-colors",
-          active 
+          isActive 
             ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium" 
             : "text-sidebar-foreground/80 hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
           collapsed && "justify-center"
@@ -41,7 +45,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       >
         <span className="flex-shrink-0">{icon}</span>
         {!collapsed && <span className="truncate">{text}</span>}
-      </a>
+      </Link>
     </li>
   );
 };
@@ -78,32 +82,37 @@ const Sidebar: React.FC = () => {
             <SidebarItem
               icon={<Home className="h-5 w-5" />}
               text="Dashboard"
-              active={true}
+              path="/"
               collapsed={collapsed}
             />
             <SidebarItem
               icon={<Cloud className="h-5 w-5" />}
               text="Cloud"
+              path="/cloud"
               collapsed={collapsed}
             />
             <SidebarItem
               icon={<Zap className="h-5 w-5" />}
               text="AI Models"
+              path="/ai-models"
               collapsed={collapsed}
             />
             <SidebarItem
               icon={<Laptop className="h-5 w-5" />}
               text="IoT Devices"
+              path="/iot-devices"
               collapsed={collapsed}
             />
             <SidebarItem
               icon={<RefreshCw className="h-5 w-5" />}
               text="Updates"
+              path="/updates"
               collapsed={collapsed}
             />
             <SidebarItem
               icon={<Settings className="h-5 w-5" />}
               text="Settings"
+              path="/settings"
               collapsed={collapsed}
             />
           </ul>

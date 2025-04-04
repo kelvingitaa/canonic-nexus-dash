@@ -6,20 +6,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-
-// We need to create placeholder pages for our sidebar navigation
-const PlaceholderPage = ({ title }: { title: string }) => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold mb-4">{title}</h1>
-    <p className="text-muted-foreground">This page is under construction.</p>
-  </div>
-);
-
-const Cloud = () => <PlaceholderPage title="Cloud Management" />;
-const AIModels = () => <PlaceholderPage title="AI Models" />;
-const IoTDevices = () => <PlaceholderPage title="IoT Devices" />;
-const Updates = () => <PlaceholderPage title="Updates" />;
-const Settings = () => <PlaceholderPage title="Settings" />;
+import Cloud from "./pages/Cloud";
+import AIModels from "./pages/AIModels";
+import IoTDevices from "./pages/IoTDevices";
+import Updates from "./pages/Updates";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 

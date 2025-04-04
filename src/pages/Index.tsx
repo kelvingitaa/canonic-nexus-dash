@@ -6,6 +6,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import SystemStatus from "@/components/dashboard/SystemStatus";
 import CloudInstances from "@/components/dashboard/CloudInstances";
 import UpdateManager from "@/components/dashboard/UpdateManager";
+import AIAssistantPanel from "@/components/ai/AIAssistantPanel";
 import { RefreshCw, Cloud, Laptop, Settings } from "lucide-react";
 
 const Index: React.FC = () => {
@@ -52,6 +53,7 @@ const Index: React.FC = () => {
             </div>
           </main>
         </div>
+        <AIAssistantPanel />
       </div>
     </ThemeProvider>
   );

@@ -11,6 +11,7 @@ import AIModels from "./pages/AIModels";
 import IoTDevices from "./pages/IoTDevices";
 import Updates from "./pages/Updates";
 import Settings from "./pages/Settings";
+import AIAssistantPanel from "./components/ai/AIAssistantPanel";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,15 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+        </Routes>
+        {/* The AI Assistant will be present on all pages except the Index page 
+            since that one already has it included in the component */}
+        <Routes>
+          <Route path="/cloud" element={<AIAssistantPanel />} />
+          <Route path="/ai-models" element={<AIAssistantPanel />} />
+          <Route path="/iot-devices" element={<AIAssistantPanel />} />
+          <Route path="/updates" element={<AIAssistantPanel />} />
+          <Route path="/settings" element={<AIAssistantPanel />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
